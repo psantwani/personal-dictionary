@@ -1,0 +1,41 @@
+<!doctype html>
+<link rel="stylesheet" type="text/css" href="../../css/popup.css">
+
+<div class="wrapper">
+	<div class="container">
+			<h1 id="title">Personal Dictionary</h1>
+			<a id="success_message"><span id="word_count">0</span> terms added.</a>
+
+			<form class="form">
+					<input type="text" id="term" placeholder="Term">
+						<input type="text" id="def" placeholder="Definition">
+						<input type="text" id="tags" placeholder="Tags (Comma separated)">
+						<textarea type="text" id="notes" placeholder="Notes"></textarea>
+						<button type="submit" id="submit-button">Submit</button>
+			</form>
+	</div>
+
+	<ul class="bg-bubbles">
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+	</ul>
+</div>
+
+<div class="footer">
+	<p id="sync">SYNC SERVER</p>
+	<p id="view">VIEW DICT</p>
+	<p id="clear_local">CLEAR LOCAL</p>
+	<p id="back">RELOAD</p>
+</div>
+
+<script src="../../js/jquery.min.js"></script>
+<script src="../../js/easy-autocomplete.min.js"></script>
+<script src="../../js/popup.js"></script>
