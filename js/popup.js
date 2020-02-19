@@ -8,7 +8,10 @@ let autocompleteOptions = {
       $("#def").val(data.def);
       $("#tags").val(data.tags.join(","));
       $("#notes").val(data.notes);
-    }
+    },
+    match: {
+			enabled: true
+		}
   }
 };
 
@@ -57,17 +60,14 @@ $("#submit-button").click(function (event) {
 
 });
 
-$("#sync").click(function (event) {
-  alert('ok');
-});
-
 $("#view").click(function (event) {
+  window.open("chrome-extension://kaahdbnnehnnbbhjajafjdiipgdmopmo/src/page_action/view.html");
   chrome.runtime.sendMessage({ cmd: "viewDictCmd" }, function ({ result, error }) {
     if (error) {
       alert(error);
       return;
     }
-    alert(JSON.stringify(result));
+    // alert(JSON.stringify(result));
   });
 });
 

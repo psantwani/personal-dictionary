@@ -1,0 +1,17 @@
+.container{
+  margin: 0 auto;
+  width: 400px;
+}
+
+#flashcards{
+  text-align: center;
+  font-size: 20px;
+}
+
+.show-definition {
+  display: block;
+}
+
+.hide-definition {
+  display: none;
+}

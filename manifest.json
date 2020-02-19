@@ -46,6 +46,7 @@
     }
   ],
   "web_accessible_resources": [
-    "src/page_action/page_action.html"
+    "src/page_action/page_action.html",
+    "src/page_action/view.html"
   ]
 }

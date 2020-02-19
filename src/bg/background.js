@@ -48,7 +48,9 @@ function addTermToDictionary(input, cb) {
     console.log(data);
     storage['personal_dictionary'] = Object.assign(dict, newStorageItem);
     chrome.storage.local.set(storage, function () {
-      return cb(Object.keys(dict).length);
+      sync(input, function () {
+        return cb(Object.keys(dict).length);
+      })
     });
   });
 }
@@ -74,6 +76,17 @@ function clearDict(cb) {
   });
 }
 
-function sync(cb) {
-
+function sync(input, cb) {
+  fetch('http://localhost:5555/personal_dictionary', {
+    method: 'post',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(input)
+  }).then(function(response) {
+    return response.json();
+  }).then(function(data) {
+    return cb("ok");
+  });
 }
