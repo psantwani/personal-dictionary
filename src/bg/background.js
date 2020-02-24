@@ -47,11 +47,11 @@ function addTermToDictionary(input, cb) {
     newStorageItem[key] = input;
     console.log(data);
     storage['personal_dictionary'] = Object.assign(dict, newStorageItem);
-    chrome.storage.local.set(storage, function () {
-      sync(input, function () {
+    sync(input, function () {
+      chrome.storage.local.set(storage, function () {
         return cb(Object.keys(dict).length);
-      })
-    });
+      });
+    })
   });
 }
 
@@ -77,6 +77,19 @@ function clearDict(cb) {
 }
 
 function sync(input, cb) {
+  fetch(`http://localhost:5555/personal_dictionary?term=${input.term}`)
+    .then(function (response) {
+      return response.json();
+    }).then(function (data) {
+      if (data.length) {
+        return updateServer(data[0].id, input, cb);
+      } else {
+        return addToServer(input, cb);
+      }
+    });
+}
+
+function addToServer(input, cb) {
   fetch('http://localhost:5555/personal_dictionary', {
     method: 'post',
     headers: {
@@ -84,9 +97,24 @@ function sync(input, cb) {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify(input)
-  }).then(function(response) {
+  }).then(function (response) {
     return response.json();
-  }).then(function(data) {
+  }).then(function (data) {
+    return cb("ok");
+  });
+}
+
+function updateServer(id, input, cb) {
+  fetch(`http://localhost:5555/personal_dictionary/${id}`, {
+    method: 'put',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(input)
+  }).then(function (response) {
+    return response.json();
+  }).then(function (data) {
     return cb("ok");
   });
 }
