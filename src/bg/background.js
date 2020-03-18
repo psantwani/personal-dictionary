@@ -45,7 +45,6 @@ function addTermToDictionary(input, cb) {
     let storage = {};
     let newStorageItem = {};
     newStorageItem[key] = input;
-    console.log(data);
     storage['personal_dictionary'] = Object.assign(dict, newStorageItem);
     sync(input, function () {
       chrome.storage.local.set(storage, function () {

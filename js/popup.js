@@ -61,7 +61,7 @@ $("#submit-button").click(function (event) {
 });
 
 $("#view").click(function (event) {
-  window.open("chrome-extension://kaahdbnnehnnbbhjajafjdiipgdmopmo/src/page_action/view.html");
+  window.open("chrome-extension://llkdipmfnonjkkcoagjofkhacdeodfni/src/page_action/view.html");
   chrome.runtime.sendMessage({ cmd: "viewDictCmd" }, function ({ result, error }) {
     if (error) {
       alert(error);
